@@ -1,0 +1,23 @@
+<form id="fm_user_add">
+    <input type="text" name="user_id"  placeholder="ID"/>
+    <input type="text" name="user_name"  placeholder="USER"/>
+    <input type="text" name="user_pass"  placeholder="PASS"/>
+    <button type="submit">SAVE</button>
+</form>
+
+<script>
+    $("#fm_user_add").submit(function(e){
+        e.preventDefault();
+
+        let fm_data = $(this).serialize();
+        $.ajax({
+            url:"/model/user_add.php ",
+            method:"GET",
+            data: fm_data,
+            success: function(res){
+                $("#div_res").html(res);
+                $("#div_action").load("/model/user_data.php");
+            }, 
+        });
+    });
+</script>
